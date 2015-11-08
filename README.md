@@ -21,7 +21,7 @@ use ATimer\Timer;
 $timer = new Timer(true);
 // Some operations that takes time
 echo $timer->getDurationFormatted();
-
+```
 
 
 ##Requirements
