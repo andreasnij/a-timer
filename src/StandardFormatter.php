@@ -46,7 +46,9 @@ class StandardFormatter implements FormatterInterface
 
         $formattedTime = '';
         foreach ($durationParts as $unit => $value) {
-            $formattedTime .= sprintf('%g%s ', $value, $unit);
+            if ($value || $formattedTime || $unit === 's') {
+                $formattedTime .= sprintf('%g%s ', $value, $unit);
+            }
         }
 
         return trim($formattedTime);

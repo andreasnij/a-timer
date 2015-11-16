@@ -85,6 +85,55 @@ class AuthenticatorTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     */
+    public function testDurationFormattedZeroYears()
+    {
+        $duration =  215 * StandardFormatter::SECONDS_IN_A_DAY + 45 * StandardFormatter::SECONDS_IN_A_MINUTE;
+
+        $timer = new Timer();
+        $timer->start(microtime(true) - $duration);
+
+        $this->assertEquals('215d 0h 45m 0s', $timer->getDurationFormatted(false));
+    }
+
+    /**
+     */
+    public function testDurationFormattedZeroDays()
+    {
+        $duration = 14 * StandardFormatter::SECONDS_IN_AN_HOUR + 27;
+
+        $timer = new Timer();
+        $timer->start(microtime(true) - $duration);
+
+        $this->assertEquals('14h 0m 27s', $timer->getDurationFormatted(false));
+    }
+
+    /**
+     */
+    public function testDurationFormattedZeroHours()
+    {
+        $duration = 45 * StandardFormatter::SECONDS_IN_A_MINUTE + 27;
+
+        $timer = new Timer();
+        $timer->start(microtime(true) - $duration);
+
+        $this->assertEquals('45m 27s', $timer->getDurationFormatted(false));
+    }
+
+
+    /**
+     */
+    public function testDurationFormattedZeroMinutes()
+    {
+        $duration = 27;
+
+        $timer = new Timer();
+        $timer->start(microtime(true) - $duration);
+
+        $this->assertEquals('27s', $timer->getDurationFormatted(false));
+    }
+
+    /**
      * @covers ATimer\Timer::__toString
      */
     public function testToString()
