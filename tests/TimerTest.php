@@ -1,15 +1,12 @@
 <?php
 
+namespace ATimer\Tests;
+
 use ATimer\Timer;
 use ATimer\StandardFormatter;
 
-class AuthenticatorTest extends PHPUnit_Framework_TestCase
+class TimerTest extends \PHPUnit_Framework_TestCase
 {
-     /**
-     * @covers ATimer\Timer::__construct
-     * @covers ATimer\Timer::start
-     * @covers ATimer\Timer::stop
-     */
     public function testConstructorStart()
     {
         $timer = new Timer(true);
@@ -17,36 +14,22 @@ class AuthenticatorTest extends PHPUnit_Framework_TestCase
         $this->assertNotNull($timer->getDuration());
     }
 
-    /**
-     * @covers ATimer\Timer::__construct
-     * @covers ATimer\Timer::start
-     * @covers ATimer\Timer::stop
-     */
     public function testConstructorWithoutStarting()
     {
         $timer = new Timer();
 
-        $this->setExpectedException('\LogicException');
+        $this->expectException(\LogicException::class);
         $timer->stop();
     }
 
-    /**
-     * @covers ATimer\Timer::start
-     */
     public function testDoubleStart()
     {
         $timer = new Timer(true);
 
-        $this->setExpectedException('\LogicException');
+        $this->expectException(\LogicException::class);
         $timer->start();
     }
 
-    /**
-     * @covers ATimer\Timer::getDuration
-     * @covers ATimer\Timer::getDurationFormatted
-     * @covers ATimer\StandardFormatter::format
-     * @covers ATimer\StandardFormatter::getDurationParts
-     */
     public function testDurationFormatted()
     {
         $duration = 2 * StandardFormatter::SECONDS_IN_A_YEAR + 215 * StandardFormatter::SECONDS_IN_A_DAY
@@ -58,8 +41,6 @@ class AuthenticatorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('2y 215d 14h 45m 27s', $timer->getDurationFormatted(false));
     }
 
-    /**
-     */
     public function testMoreComplexDurationFormatted()
     {
         $duration = 2 * StandardFormatter::SECONDS_IN_A_YEAR + 366 * StandardFormatter::SECONDS_IN_A_DAY
@@ -71,9 +52,6 @@ class AuthenticatorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('3y 2d 2h 2m 1s', $timer->getDurationFormatted(false));
     }
 
-    /**
-     * @covers ATimer\StandardFormatter::getDurationParts
-     */
     public function testDurationFormattedWithMillisecondPrecision()
     {
         $duration = 0.5;
@@ -84,8 +62,6 @@ class AuthenticatorTest extends PHPUnit_Framework_TestCase
         $this->assertContains('.', $timer->getDurationFormatted(true));
     }
 
-    /**
-     */
     public function testDurationFormattedZeroYears()
     {
         $duration =  215 * StandardFormatter::SECONDS_IN_A_DAY + 45 * StandardFormatter::SECONDS_IN_A_MINUTE;
@@ -96,8 +72,6 @@ class AuthenticatorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('215d 0h 45m 0s', $timer->getDurationFormatted(false));
     }
 
-    /**
-     */
     public function testDurationFormattedZeroDays()
     {
         $duration = 14 * StandardFormatter::SECONDS_IN_AN_HOUR + 27;
@@ -108,8 +82,6 @@ class AuthenticatorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('14h 0m 27s', $timer->getDurationFormatted(false));
     }
 
-    /**
-     */
     public function testDurationFormattedZeroHours()
     {
         $duration = 45 * StandardFormatter::SECONDS_IN_A_MINUTE + 27;
@@ -120,9 +92,6 @@ class AuthenticatorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('45m 27s', $timer->getDurationFormatted(false));
     }
 
-
-    /**
-     */
     public function testDurationFormattedZeroMinutes()
     {
         $duration = 27;
@@ -133,9 +102,6 @@ class AuthenticatorTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('27s', $timer->getDurationFormatted(false));
     }
 
-    /**
-     * @covers ATimer\Timer::__toString
-     */
     public function testToString()
     {
         $timer = new Timer();
@@ -144,9 +110,6 @@ class AuthenticatorTest extends PHPUnit_Framework_TestCase
         $this->assertContains('s', (string) $timer);
     }
 
-    /**
-     * @covers ATimer\Timer::__toString
-     */
     public function testToStringWithoutStarting()
     {
         $timer = new Timer();
