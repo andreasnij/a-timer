@@ -12,7 +12,7 @@ Add the package as a requirement to your `composer.json`:
 $ composer require jandreasn/a-timer
 ```
 
-##Usage
+## Usage
 ```php
 <?php
 
@@ -21,14 +21,15 @@ use ATimer\Timer;
 $timer = new Timer(true);
 // Some operations that takes time
 echo $timer->getDurationFormatted();
+// Example output: 1.237s
 ```
 
 
-##Requirements
+## Requirements
 - PHP 5.6 or above.
 
-##Author
+## Author
 Andreas Nilsson <http://github.com/jandreasn>
 
-##License
+## License
 Licensed under the MIT License - see the `LICENSE` file for details.
