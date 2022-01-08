@@ -1,46 +1,15 @@
 <?php
-/**
- * A Timer.
- *
- * @copyright Copyright (c) 2015 Andreas Nilsson
- * @license   MIT
- */
 
 namespace ATimer;
 
-/**
- * Standard time formatter.
- *
- * @author Andreas Nilsson <http://github.com/jandreasn>
- */
 class StandardFormatter implements FormatterInterface
 {
-    /**
-     * @const int
-     */
-    const SECONDS_IN_A_YEAR = 365 * self::SECONDS_IN_A_DAY; // Not accounting for leap years
+    public const SECONDS_IN_A_YEAR = 365 * self::SECONDS_IN_A_DAY; // Not accounting for leap years
+    public const SECONDS_IN_A_DAY = 24 * self::SECONDS_IN_AN_HOUR;
+    public const SECONDS_IN_AN_HOUR = 60 * self::SECONDS_IN_A_MINUTE;
+    public const SECONDS_IN_A_MINUTE = 60;
 
-    /**
-     * @const int
-     */
-    const SECONDS_IN_A_DAY = 24 * self::SECONDS_IN_AN_HOUR;
-
-    /**
-     * @const int
-     */
-    const SECONDS_IN_AN_HOUR = 60 * self::SECONDS_IN_A_MINUTE;
-
-    /**
-     * @const int
-     */
-    const SECONDS_IN_A_MINUTE = 60;
-
-    /**
-     * @param float $duration
-     * @param bool  $millisecondPrecision
-     * @return string
-     */
-    public function format($duration, $millisecondPrecision = true)
+    public function format(float $duration, bool $millisecondPrecision = true): string
     {
         $durationParts = $this->getDurationParts($duration, $millisecondPrecision);
 
@@ -54,12 +23,7 @@ class StandardFormatter implements FormatterInterface
         return trim($formattedTime);
     }
 
-    /**
-     * @param float $duration
-     * @param bool  $millisecondPrecision
-     * @return array
-     */
-    protected function getDurationParts($duration, $millisecondPrecision = true)
+    protected function getDurationParts(float $duration, bool $millisecondPrecision = true): array
     {
         $parts = [];
 

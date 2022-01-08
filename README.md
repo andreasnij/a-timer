@@ -14,22 +14,22 @@ $ composer require jandreasn/a-timer
 
 ## Usage
 ```php
-<?php
-
 use ATimer\Timer;
 
-$timer = new Timer(true);
-// Some operations that takes time
+$timer = new Timer();
+
+// Some operations that take time
 echo $timer->getDurationFormatted();
-// Example output: 1.237s
+
+// Example output: 1.237 s
 ```
 
 
 ## Requirements
-- PHP 5.6 or above.
+- PHP 7.4 or above.
 
 ## Author
-Andreas Nilsson <http://github.com/jandreasn>
+Andreas Nilsson (<https://github.com/andreasnij>)
 
 ## License
-Licensed under the MIT License - see the `LICENSE` file for details.
+Licensed under the MIT License - see the [LICENSE](LICENSE.md) file for details.

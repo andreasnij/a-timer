@@ -1,0 +1,8 @@
+parameters:
+    paths:
+        - src
+        - tests
+    level: max
+    checkMissingIterableValueType: false
+    ignoreErrors:
+            - '#Method ATimer\\Timer::getDuration\(\) should return float but returns float\|null\.#'

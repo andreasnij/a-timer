@@ -4,17 +4,18 @@ namespace ATimer\Tests;
 
 use ATimer\Timer;
 use ATimer\StandardFormatter;
+use PHPUnit\Framework\TestCase;
 
-class TimerTest extends \PHPUnit_Framework_TestCase
+class TimerTest extends TestCase
 {
-    public function testConstructorStart()
+    public function testConstructorStart(): void
     {
         $timer = new Timer(true);
 
         $this->assertNotNull($timer->getDuration());
     }
 
-    public function testConstructorWithoutStarting()
+    public function testConstructorWithoutStarting(): void
     {
         $timer = new Timer();
 
@@ -22,7 +23,7 @@ class TimerTest extends \PHPUnit_Framework_TestCase
         $timer->stop();
     }
 
-    public function testDoubleStart()
+    public function testDoubleStart(): void
     {
         $timer = new Timer(true);
 
@@ -30,7 +31,7 @@ class TimerTest extends \PHPUnit_Framework_TestCase
         $timer->start();
     }
 
-    public function testDurationFormatted()
+    public function testDurationFormatted(): void
     {
         $duration = 2 * StandardFormatter::SECONDS_IN_A_YEAR + 215 * StandardFormatter::SECONDS_IN_A_DAY
             + 14 * StandardFormatter::SECONDS_IN_AN_HOUR + 45 * StandardFormatter::SECONDS_IN_A_MINUTE + 27;
@@ -41,7 +42,7 @@ class TimerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('2y 215d 14h 45m 27s', $timer->getDurationFormatted(false));
     }
 
-    public function testMoreComplexDurationFormatted()
+    public function testMoreComplexDurationFormatted(): void
     {
         $duration = 2 * StandardFormatter::SECONDS_IN_A_YEAR + 366 * StandardFormatter::SECONDS_IN_A_DAY
             + 25 * StandardFormatter::SECONDS_IN_AN_HOUR + 61 * StandardFormatter::SECONDS_IN_A_MINUTE + 61;
@@ -52,17 +53,17 @@ class TimerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('3y 2d 2h 2m 1s', $timer->getDurationFormatted(false));
     }
 
-    public function testDurationFormattedWithMillisecondPrecision()
+    public function testDurationFormattedWithMillisecondPrecision(): void
     {
         $duration = 0.5;
 
         $timer = new Timer();
         $timer->start(microtime(true) - $duration);
 
-        $this->assertContains('.', $timer->getDurationFormatted(true));
+        $this->assertStringContainsString('.', $timer->getDurationFormatted(true));
     }
 
-    public function testDurationFormattedZeroYears()
+    public function testDurationFormattedZeroYears(): void
     {
         $duration =  215 * StandardFormatter::SECONDS_IN_A_DAY + 45 * StandardFormatter::SECONDS_IN_A_MINUTE;
 
@@ -72,7 +73,7 @@ class TimerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('215d 0h 45m 0s', $timer->getDurationFormatted(false));
     }
 
-    public function testDurationFormattedZeroDays()
+    public function testDurationFormattedZeroDays(): void
     {
         $duration = 14 * StandardFormatter::SECONDS_IN_AN_HOUR + 27;
 
@@ -82,7 +83,7 @@ class TimerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('14h 0m 27s', $timer->getDurationFormatted(false));
     }
 
-    public function testDurationFormattedZeroHours()
+    public function testDurationFormattedZeroHours(): void
     {
         $duration = 45 * StandardFormatter::SECONDS_IN_A_MINUTE + 27;
 
@@ -92,7 +93,7 @@ class TimerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('45m 27s', $timer->getDurationFormatted(false));
     }
 
-    public function testDurationFormattedZeroMinutes()
+    public function testDurationFormattedZeroMinutes(): void
     {
         $duration = 27;
 
@@ -102,15 +103,15 @@ class TimerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('27s', $timer->getDurationFormatted(false));
     }
 
-    public function testToString()
+    public function testToString(): void
     {
         $timer = new Timer();
         $timer->start();
 
-        $this->assertContains('s', (string) $timer);
+        $this->assertStringContainsString('s', (string) $timer);
     }
 
-    public function testToStringWithoutStarting()
+    public function testToStringWithoutStarting(): void
     {
         $timer = new Timer();
 
