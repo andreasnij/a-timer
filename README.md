@@ -1,14 +1,13 @@
 # A Timer
 
-[![Latest Stable Version](https://poser.pugx.org/jandreasn/a-timer/v/stable)](https://packagist.org/packages/jandreasn/a-timer)
-[![License](https://poser.pugx.org/jandreasn/a-timer/license)](https://packagist.org/packages/jandreasn/a-timer)
+[![Latest Stable Version](https://poser.pugx.org/andreasnij/a-timer/v/stable)](https://packagist.org/packages/andreasnij/a-timer)
 
-A simple timer to time/benchmark operations with a nice human readable result.
+A simple timer to time/benchmark operations with a short human-readable result.
 
 ## Installation
 Add the package as a requirement to your `composer.json`:
 ```bash
-$ composer require jandreasn/a-timer
+$ composer require andreasnij/a-timer
 ```
 
 ## Usage
@@ -20,7 +19,7 @@ $timer = new Timer();
 // Some operations that take time
 echo $timer->getDurationFormatted();
 
-// Example output: 1.237 s
+// Example output: 1.237s
 ```
 
 

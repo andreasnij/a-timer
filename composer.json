@@ -1,5 +1,5 @@
 {
-    "name": "jandreasn/a-timer",
+    "name": "andreasnij/a-timer",
     "type": "library",
     "description": "A simple timer to measure execution time.",
     "keywords": ["timer", "timing", "benchmark"],
