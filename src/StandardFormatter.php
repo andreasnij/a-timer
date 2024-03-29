@@ -30,15 +30,15 @@ class StandardFormatter implements FormatterInterface
         $years = floor($duration / self::SECONDS_IN_A_YEAR);
         $parts['y'] = $years;
 
-        $daySeconds = $duration % self::SECONDS_IN_A_YEAR;
+        $daySeconds = (int) $duration % self::SECONDS_IN_A_YEAR;
         $days = floor($daySeconds / self::SECONDS_IN_A_DAY);
         $parts['d'] = $days;
 
-        $hourSeconds = $duration % self::SECONDS_IN_A_DAY;
+        $hourSeconds = (int) $duration % self::SECONDS_IN_A_DAY;
         $hours = floor($hourSeconds / self::SECONDS_IN_AN_HOUR);
         $parts['h'] = $hours;
 
-        $minuteSeconds = $duration % self::SECONDS_IN_AN_HOUR;
+        $minuteSeconds = (int) $duration % self::SECONDS_IN_AN_HOUR;
         $minutes = floor($minuteSeconds / self::SECONDS_IN_A_MINUTE);
         $parts['m'] = $minutes;
 
