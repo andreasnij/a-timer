@@ -22,10 +22,6 @@ echo $timer->getDurationFormatted();
 // Example output: 1.237s
 ```
 
-
-## Requirements
-- PHP 7.4 or above.
-
 ## Author
 Andreas Nilsson (<https://github.com/andreasnij>)
 
